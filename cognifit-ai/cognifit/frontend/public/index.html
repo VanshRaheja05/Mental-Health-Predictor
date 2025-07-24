@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cognifit Mental Health Survey</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      width: 90%;
+    }
+
+    h1 {
+      text-align: center;
+      color: #111;
+      margin-bottom: 30px;
+    }
+
+    label {
+      display: block;
+      margin-top: 20px;
+      font-weight: 600;
+      color: #222;
+    }
+
+    input[type="range"], select {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    output {
+      font-weight: bold;
+      display: inline-block;
+      margin-left: 10px;
+      color: #000;
+    }
+
+    .radio-group {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      color: #111;
+    }
+
+    button {
+      margin-top: 30px;
+      width: 100%;
+      background: #111;
+      color: white;
+      padding: 12px;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #444;
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>🧠 Cognifit: Mental Health Survey</h1>
+    
+    <form id="mentalForm">
+      <label>1. How many hours do you sleep daily?</label>
+      <input type="range" name="sleep" min="0" max="12" value="6" oninput="this.nextElementSibling.value = this.value">
+      <output>6</output>
+
+      <label>2. How would you rate your workload?</label>
+      <input type="range" name="workload" min="0" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+      <output>5</output>
+
+      <label>3. How frequently do you feel mood swings?</label>
+      <input type="range" name="mood" min="0" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+      <output>5</output>
+
+      <label>4. How often do you socialize?</label>
+      <input type="range" name="social" min="0" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+      <output>5</output>
+
+      <label>5. Do you have a history of mental health conditions?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="history" value="0" checked> No</label>
+        <label><input type="radio" name="history" value="1"> Yes</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('mentalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const formData = new FormData(this);
+      const data = {};
+      for (let [key, value] of formData.entries()) {
+        data[key] = value;
+      }
+
+      alert("Form Submitted!\n" + JSON.stringify(data, null, 2));
+    });
+  </script>
+
+</body>
+</html>
